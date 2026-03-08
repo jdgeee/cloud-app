@@ -5,8 +5,8 @@ COPY package*.json ./
 RUN npm install
 COPY . .
 RUN npm run build
- 
-# Etap 2: Serwowanie (Production) - używamy lekkiego serweraNginx
+
+# Etap 2: Serwowanie (Production) - używamy lekkiego serwera Nginx
 FROM nginx:alpine
 # Kopiujemy tylko efekt budowania (folder /dist) do folderu Nginx
 COPY --from=build /app/dist /usr/share/nginx/html
