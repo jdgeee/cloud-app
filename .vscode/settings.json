@@ -1,0 +1,5 @@
+{
+    "appService.preDeployTask": "publish-release",
+    "appService.deploySubpath": "backend/bin/Release/net10.0/publish",
+    "appService.defaultWebAppToDeploy": "/subscriptions/7e5c52ea-0243-4191-b7ae-f0546d17f9b0/resourceGroups/cloud-task-manager-96593_group/providers/Microsoft.Web/sites/cloud-task-manager-96593"
+}

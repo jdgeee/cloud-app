@@ -24,7 +24,8 @@ Ten projekt został zaplanowany z myślą o usługach PaaS (Platform as a Servic
 * [x] **Artefakt 2:** Konfiguracja środowiska Docker (w trakcie...). 
 * [x] **Artefakt 3:** Działająca warstwa prezentacji (React + Vite w Docker). 
 * [x] **Artefakt 4:** Działające wersja logiki backendu. 
-* [x] **Artefakt 5:** Zauktalizowane funkcje Artefaktu 5. 
+* [x] **Artefakt 5:** Trwałość danych i profesjonalny  kontrakt API(EF Migrations + DTO + UI Form). 
+* [x] **Artefakt 6:** Wdrożenie aplikacji w chmurze Azure (Azure SQL + App Service backend/frontend + CORS).
 
   
 
