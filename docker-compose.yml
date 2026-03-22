@@ -36,8 +36,23 @@ services:
       ACCEPT_EULA: "Y"
     ports:
       - "1433:1433"
+# KROK 1: Dodanie wolumenu do kontenera
+
+    volumes:
+
+      - sql-data:/var/opt/mssql
+
     networks:
+
       - cloud-network
+
+
+
+# KROK 2: Globalna definicja wolumenu
+
+volumes:
+
+  sql-data:
 
 networks:
   cloud-network:
