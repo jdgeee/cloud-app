@@ -5,7 +5,7 @@ using Azure.Identity; // Potrzebne do DefaultAzureCredential
 
 var builder = WebApplication.CreateBuilder(args);
 
-// --- NOWA SEKCJA: INTEGRACJA Z MAGAZYNEM KLUCZY (KEY VAULT) ---
+// --- NOWA SEKCJA: INTEGRACJA Z MAGAZYNEM KLUCZY (KEY VAULT)rtr ---
 // Jeśli aplikacja działa w chmurze (Production), pobieramy hasła z sejfu
 if (builder.Environment.IsProduction())
 {
