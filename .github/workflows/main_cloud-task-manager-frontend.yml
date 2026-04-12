@@ -22,7 +22,7 @@ jobs:
           npm run build
         working-directory: ./frontend
         env:
-          VITE_API_URL: "https://cloud-task-manager-frontend-96593-b5hte0dbgkdvadgt.polandcentral-01.azurewebsites.net"
+          VITE_API_URL: "https://cloud-task-manager-api-96593-hhgbfabsg3fmhdbe.polandcentral-01.azurewebsites.net/api"
 
       - name: Upload
         uses: actions/upload-artifact@v4
