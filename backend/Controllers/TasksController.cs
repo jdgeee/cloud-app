@@ -18,6 +18,11 @@ public class TasksController : ControllerBase
         _context = context;
     }
 
+    /// <summary>
+    /// Pobiera listę wszystkich zadań z bazy Azure SQL.
+    /// Metoda wykorzystuje mechanizm ponawiania (Retry Logic) w przypadku uśpienia bazy.
+    /// </summary>
+    /// <returns>Lista zadań w formacie TaskReadDto.</returns>
     [HttpGet]
     public async Task<ActionResult<IEnumerable<TaskReadDto>>> GetAll()
     {
@@ -33,8 +38,13 @@ public class TasksController : ControllerBase
     return Ok(tasksDto);
     }
 
+    /// <summary>
+    /// Pobiera pojedyncze zadanie na podstawie jego identyfikatora.
+    /// </summary>
+    /// <param name="id">Unikalny identyfikator zadania.</param>
+    /// <returns>Zadanie w formacie TaskReadDto lub 404 Not Found.</returns>
     [HttpGet("{id}")]
-public async Task<ActionResult<TaskReadDto>> GetById(int id)
+    public async Task<ActionResult<TaskReadDto>> GetById(int id)
     {
     var task = await _context.Tasks.FindAsync(id);
     if (task == null) return NotFound();  // Zwracamy DTO zamiast czystej encji
@@ -47,8 +57,14 @@ public async Task<ActionResult<TaskReadDto>> GetById(int id)
     }
     
 
+    /// <summary>
+    /// Tworzy nowe zadanie i zapisuje je w bazie danych Azure SQL.
+    /// Przyjmuje TaskCreateDto (kontrakt wejściowy) i zwraca TaskReadDto z nadanym przez bazę Id.
+    /// </summary>
+    /// <param name="taskDto">Dane nowego zadania (nazwa).</param>
+    /// <returns>Utworzone zadanie wraz z adresem URL do jego zasobu (201 Created).</returns>
     [HttpPost]
-public async Task<ActionResult<TaskReadDto>> Create(TaskCreateDto taskDto)
+    public async Task<ActionResult<TaskReadDto>> Create(TaskCreateDto taskDto)
     {
     // 1. Mapowanie DTO -> Entity
     // Przekształcamy to, co przyszło z sieci, na model bazy danych
@@ -76,7 +92,13 @@ public async Task<ActionResult<TaskReadDto>> Create(TaskCreateDto taskDto)
  
 
 
-    [HttpPut("{id}")] // 4. Edytuj (UPDATE)
+    /// <summary>
+    /// Aktualizuje istniejące zadanie (np. oznacza jako ukończone).
+    /// </summary>
+    /// <param name="id">Identyfikator zadania do zaktualizowania.</param>
+    /// <param name="task">Zaktualizowany obiekt zadania.</param>
+    /// <returns>204 No Content w przypadku sukcesu lub 400 Bad Request przy niezgodności ID.</returns>
+    [HttpPut("{id}")]
     public async Task<ActionResult> Update(int id, CloudTask task)
     {
         if (id != task.Id) return BadRequest("ID mismatch");
@@ -85,7 +107,12 @@ public async Task<ActionResult<TaskReadDto>> Create(TaskCreateDto taskDto)
         return NoContent(); // Status 204 - operacja udana, brak danych do odesłania
     }
 
-    [HttpDelete("{id}")] // 5. Usuń (DELETE)
+    /// <summary>
+    /// Usuwa zadanie o podanym identyfikatorze z bazy danych.
+    /// </summary>
+    /// <param name="id">Identyfikator zadania do usunięcia.</param>
+    /// <returns>204 No Content w przypadku sukcesu lub 404 Not Found gdy zadanie nie istnieje.</returns>
+    [HttpDelete("{id}")]
     public async Task<ActionResult> Delete(int id)
     {
         var task = await _context.Tasks.FindAsync(id);
