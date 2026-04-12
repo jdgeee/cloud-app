@@ -91,7 +91,7 @@ jobs:
 
         with:
 
-          app-name: 'cloud-task-manager-frontend'
+          app-name: 'cloud-task-manager-frontend-96593'
 
           package: dist
 
