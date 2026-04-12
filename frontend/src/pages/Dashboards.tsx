@@ -53,7 +53,7 @@ const Dashboard = () => {
 
   return (
     <div style={{ padding: '20px', textAlign: 'center', fontFamily: 'Arial, sans-serif' }}>
-      <h1>☁️ Cloud App Dashboard</h1>
+      <h1 style={{ color: '#FFD700' }}>☁️ Cloud App Dashboard</h1>
 
       {/* Komunikat o błędzie */}
       {error && (
